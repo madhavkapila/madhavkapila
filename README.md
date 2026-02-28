@@ -99,9 +99,7 @@ $ madhav --status --verbose
 <br>
 
 <div align="center">
-  <a href="https://github.com/ryo-ma/github-profile-trophy">
-    <img src="https://github-profile-trophy.vercel.app/?username=madhavkapila&theme=tokyonight&column=7&no-bg=true&no-frame=true&margin-w=15" width="100%" alt="GitHub Trophies" />
-  </a>
+  <img src="./github-metrics-trophies.svg" width="100%" alt="GitHub Trophies" />
 </div>
 
 <br>
