@@ -90,7 +90,7 @@ $ madhav --status --verbose
 
 ---
 
-### 📊 GitHub Analytics & Vibe
+### 📊 GitHub Analytics & Coding Habits
 
 <div align="center">
   <picture>
@@ -103,5 +103,5 @@ $ madhav --status --verbose
 <br>
 
 <div align="center">
-  <img src="./github-metrics.svg" width="100%" alt="Detailed GitHub Metrics">
+  <img src="./github-metrics.svg" width="100%" alt="Detailed Graphical Metrics">
 </div>
