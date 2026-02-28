@@ -2,16 +2,9 @@
   <p><small><i>ॐ नमः शिवाय</i></small></p>
 
   <a href="https://github.com/madhavkapila">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=30&pause=1000&color=00D2FF&center=true&vCenter=true&width=800&lines=Hi+I'm+Madhav+Kapila;Applied+GenAI+%26+Deep+Learning;Architecting+Heavy+Backends;Grinding+DSA+&+CP;O(1)+Attitude,+O(2%5En)+Curiosity" alt="Madhav Kapila" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=30&pause=1000&color=00D2FF&center=true&vCenter=true&width=800&lines=Hi+I'm+Madhav+Kapila;Integrating+Applied+GenAI+%26+DL;Architecting+Heavy+Backends;Grinding+DSA+%26+CP;O(1)+Attitude,+O(2%5En)+Curiosity" alt="Madhav Kapila" />
   </a>
   
-  <!---
-  <p>
-    <img src="https://img.shields.io/badge/Mentality-King_18_👑-000000?style=flat-square&logoColor=00D2FF" alt="King 18" />
-    <img src="https://img.shields.io/badge/Execution-V8_Engine_🏎️-00D2FF?style=flat-square&logoColor=white" alt="V8 Mindset" />
-  </p>
-  --->
-
   <p>
     <a href="https://linkedin.com/in/madhav-kapila"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white" /></a>
     <a href="https://leetcode.com/SmartKapila/"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=flat-square&logo=LeetCode&logoColor=black" /></a>
@@ -33,7 +26,8 @@ $ madhav --status --verbose
 ---
 
 ### 💻 The Engineering Arsenal
-<div align="center">
+
+  <div align="center">
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=java,c,cpp,python,html,css,js,bash,r,fastapi,flask,django,react,mysql,postgres&theme=dark" />
     <img src="https://skillicons.dev/icons?i=mongodb,docker,aws,pytorch,tensorflow,sklearn,matlab,git,github,vscode,linux,ubuntu,postman,androidstudio&theme=dark" />
@@ -62,16 +56,22 @@ $ madhav --status --verbose
 * **Auto-Evaluator:** NLP Grading Pipeline (PyMuPDF & Sentence-Transformers)
 * **Saturnalia SatBot:** Live Event Dynamic RAG (Resolved Reader/Writer Locks)
 * **Food Rating Engine:** LLD Java REST API (O(1) HashMaps & O(logn) TreeSets)
-<!--- * **IndicBit-1.58:** 1.58-bit Multilingual Quantized LLM --->
 
 <br clear="both">
 
+---
+
 ### 🏆 Problem Solving
-<img align="left" src="./blob/vk18.jpeg" style="max-width: 150px; border-radius: 8px; margin-right: 15px; margin-bottom: 10px;" alt="King 18 Discipline" />
 
 <div align="center">
-  <a href="https://codolio.com/profile/SmartKapila">
-    <img src="./dist/dsa_card.svg" width="350" alt="Custom DSA Metrics" />
+  <img align="right" src="./blob/vk18.jpeg" height="310" style="border-radius: 8px; margin-left: 15px;" alt="King 18 Discipline" />
+  
+  <a href="https://leetcode.com/SmartKapila/">
+    <img src="./dist/dsa_card.svg" width="400" alt="Live DSA Metrics" style="margin-bottom: 10px;" />
+  </a>
+  <br>
+  <a href="https://www.codechef.com/users/madhavkapila">
+    <img src="./dist/cp_card.svg" width="400" alt="Live CP Metrics" />
   </a>
 </div>
 
@@ -90,7 +90,4 @@ $ madhav --status --verbose
 
 <br>
 
----
-
-### 📊 Analytics & Impact
 *(lowlighter/metrics GitHub Action will inject the terminal-style dashboard here)*
