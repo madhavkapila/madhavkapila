@@ -67,11 +67,12 @@ $ madhav --status --verbose
 <br clear="both">
 
 ### 🏆 Problem Solving
-<img align="left" src="./vk18.jpg" width="12%" style="max-width: 120px; border-radius: 8px; margin-right: 15px; margin-bottom: 10px;" alt="King 18 Discipline" />
+<img align="left" src="./blob/vk18.jpeg" style="max-width: 150px; border-radius: 8px; margin-right: 15px; margin-bottom: 10px;" alt="King 18 Discipline" />
 
 <div align="center">
-  <img src="https://leetcard.jacoblin.cool/madhavkapila?theme=tokyonight&font=Fira%20Code&ext=activity" width="42%" alt="LeetCode Stats" />
-  <img src="https://codolio.com/profile/SmartKapila/card" width="42%" alt="Codolio Profile" />
+  <a href="https://codolio.com/profile/SmartKapila">
+    <img src="./dist/dsa_card.svg" width="350" alt="Custom DSA Metrics" />
+  </a>
 </div>
 
 <br clear="both">
@@ -79,27 +80,11 @@ $ madhav --status --verbose
 ---
 
 ### 📊 GitHub Analytics & Impact
-
-<div align="center">
-  <a href="https://github.com/ryo-ma/github-profile-trophy">
-    <img src="https://github-profile-trophy.vercel.app/?username=madhavkapila&theme=tokyonight&column=7&margin-w=15&margin-h=15&no-bg=true&no-frame=true" width="100%" alt="GitHub Trophies" />
-  </a>
-</div>
-
-<br>
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=madhavkapila&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true" width="48%" alt="GitHub Stats" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=madhavkapila&theme=tokyonight&hide_border=true&background=00000000" width="48%" alt="GitHub Streak" />
-</div>
-
-<br>
-
 <div align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/madhavkapila/madhavkapila/output/github-contribution-grid-snake-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/madhavkapila/madhavkapila/output/github-contribution-grid-snake.svg">
-    <img alt="GitHub Contribution Snake" src="https://raw.githubusercontent.com/madhavkapila/madhavkapila/output/github-contribution-grid-snake.svg" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="./dist/github-contribution-grid-snake-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./dist/github-contribution-grid-snake.svg">
+    <img alt="GitHub Contribution Snake" src="./dist/github-contribution-grid-snake.svg" width="100%">
   </picture>
 </div>
 

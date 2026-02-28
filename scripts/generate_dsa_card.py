@@ -1,0 +1,49 @@
+import os
+
+# Your actual metrics (You can later automate fetching these via APIs)
+name = "Madhav Kapila"
+handle = "@SmartKapila"
+questions_solved = 411
+active_days = 235
+platforms = ["#JAVA", "#C++", "#2STARS", "#DSA", "#NEWBIE", "#PYTHON3"]
+
+# Generate the SVG string
+svg_content = f"""
+<svg width="350" height="420" viewBox="0 0 350 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="350" height="420" rx="15" fill="#151515"/>
+    <rect x="2" y="2" width="346" height="416" rx="13" stroke="#252525" stroke-width="4"/>
+    
+    <text x="20" y="35" font-family="Arial, sans-serif" font-weight="bold" font-size="16" fill="#FFFFFF">Cod<tspan fill="#FF8C00">olio</tspan></text>
+    <text x="20" y="55" font-family="Arial, sans-serif" font-size="12" fill="#888888" letter-spacing="1">CARD</text>
+
+    <circle cx="175" cy="120" r="50" fill="#E67E22" stroke="#FF8C00" stroke-width="4"/>
+    <text x="175" y="135" font-family="Arial, sans-serif" font-weight="bold" font-size="45" fill="#FFFFFF" text-anchor="middle">M</text>
+
+    <text x="175" y="200" font-family="Arial, sans-serif" font-weight="bold" font-size="22" fill="#FFFFFF" text-anchor="middle">{name} ✔</text>
+    <rect x="125" y="212" width="100" height="24" rx="12" fill="#2C1E16"/>
+    <text x="175" y="228" font-family="Arial, sans-serif" font-size="12" fill="#E67E22" text-anchor="middle">{handle}</text>
+
+    <rect x="20" y="250" width="145" height="60" rx="8" fill="#1E1E1E"/>
+    <text x="92" y="270" font-family="Arial, sans-serif" font-size="12" fill="#E67E22" text-anchor="middle">Questions Solved</text>
+    <line x1="30" y1="278" x2="155" y2="278" stroke="#333333" stroke-width="1"/>
+    <text x="92" y="300" font-family="Arial, sans-serif" font-size="24" fill="#FFFFFF" text-anchor="middle">{questions_solved}</text>
+
+    <rect x="185" y="250" width="145" height="60" rx="8" fill="#1E1E1E"/>
+    <text x="257" y="270" font-family="Arial, sans-serif" font-size="12" fill="#2ECC71" text-anchor="middle">Active Days</text>
+    <line x1="195" y1="278" x2="320" y2="278" stroke="#333333" stroke-width="1"/>
+    <text x="257" y="300" font-family="Arial, sans-serif" font-size="24" fill="#FFFFFF" text-anchor="middle">{active_days}</text>
+
+    <rect x="20" y="325" width="310" height="75" rx="8" fill="#1E1E1E"/>
+    <text x="175" y="345" font-family="Arial, sans-serif" font-size="12" fill="#888888" text-anchor="middle">You can find me on...</text>
+    <text x="175" y="375" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#555555" text-anchor="middle">{"   ".join(platforms)}</text>
+</svg>
+"""
+
+# Ensure dist directory exists
+os.makedirs('dist', exist_ok=True)
+
+# Write the SVG to a file
+with open('dist/dsa_card.svg', 'w', encoding='utf-8') as f:
+    f.write(svg_content)
+
+print("Custom DSA SVG generated successfully!")
