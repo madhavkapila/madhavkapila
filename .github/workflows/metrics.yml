@@ -10,24 +10,21 @@ jobs:
     permissions:
       contents: write
     steps:
-      # 1. Checkout with full fetch depth to prevent commit conflicts
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      # 2. Setup Python & Install Dependencies
       - name: Set up Python
         uses: actions/setup-python@v4
         with: { python-version: '3.x' }
+        
       - name: Install Dependencies
         run: pip install requests
 
-      # 3. Generate your Custom DSA & CP Cards
       - name: Generate Futuristic DSA/CP Cards
         run: python scripts/generate_cards.py
 
-      # 4. Generate the Contribution Snake
       - name: Generate Contribution Snake
         uses: Platane/snk/svg-only@v3
         with:
@@ -36,39 +33,50 @@ jobs:
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
-      # 5. COMMIT CUSTOM FILES FIRST (Crucial fix for rendering)
       - name: Commit Custom SVGs to Repo
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Auto-generate Live Custom Cards & Snake"
           file_pattern: 'dist/*.svg'
 
-      # 6. Generate GRAPHICAL Lowlighter Metrics
       - name: Generate Graphical GitHub Analytics
         uses: lowlighter/metrics@latest
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # IMPORTANT: Requires a Personal Access Token in your repo secrets for Traffic stats
+          token: ${{ secrets.METRICS_TOKEN }}
           user: madhavkapila
-          template: classic # Switched from terminal to graphical cards
+          template: classic
+          config_theme: tokyonight
           filename: github-metrics.svg
           config_timezone: Asia/Kolkata
           
-          # Base Stats
-          base: header, activity, repositories, metadata
+          # 1. Base Stats (Replaces the broken github-readme-stats)
+          base: header, activity, repositories
           
-          # Languages (Graphical breakdown)
-          plugin_languages: yes
-          plugin_languages_limit: 8
-          plugin_languages_details: percentage
+          # 2. Achievements (Replaces the broken github-profile-trophy)
+          plugin_achievements: yes
+          plugin_achievements_display: compact
+          plugin_achievements_threshold: C
           
-          # Coding Habits (Graphical charts of commit times/days)
+          # 3. Coding Habits (Graphical charts)
           plugin_habits: yes
           plugin_habits_from: 200
           plugin_habits_days: 14
           plugin_habits_facts: yes
           plugin_habits_charts: yes
           
-          # Official LeetCode Plugin (Graphical)
+          # 4. Languages Used
+          plugin_languages: yes
+          plugin_languages_limit: 8
+          
+          # 5. Official LeetCode Plugin
           plugin_leetcode: yes
           plugin_leetcode_user: SmartKapila
           plugin_leetcode_sections: solved, skills, recent
+          
+          # 6. Repositories Traffic
+          plugin_traffic: yes
+          
+          # 7. 3D Contribution Graph (Great for moderate activity)
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: half-year

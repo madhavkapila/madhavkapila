@@ -90,7 +90,13 @@ $ madhav --status --verbose
 
 ---
 
-### 📊 GitHub Analytics & Coding Habits
+### 📊 Open Source Analytics & Impact
+
+<div align="center">
+  <img src="https://komarev.com/ghpvc/?username=madhavkapila&label=Profile%20Views&color=8B44FC&style=flat-square" alt="Profile Views" />
+</div>
+
+<br>
 
 <div align="center">
   <picture>
