@@ -27,12 +27,18 @@ $ madhav --status --verbose
 
 ### 💻 The Engineering Arsenal
 
-  <div align="center">
+<div align="center">
+
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=java,c,cpp,python,html,css,js,bash,r,fastapi,flask,django,react,mysql,postgres&theme=dark" />
+  </a>
+  <br>
+  <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=mongodb,docker,aws,pytorch,tensorflow,sklearn,matlab,git,github,vscode,linux,ubuntu,postman,androidstudio&theme=dark" />
   </a>
+
   <br><br>
+
   <img src="https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white" />
   <img src="https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white" />
   <img src="https://img.shields.io/badge/Matplotlib-000000?style=flat-square&logoColor=white" />
@@ -44,11 +50,13 @@ $ madhav --status --verbose
   <img src="https://img.shields.io/badge/TextBlob-00D2FF?style=flat-square&logoColor=white" />
   <img src="https://img.shields.io/badge/Oracle_SQL-F80000?style=flat-square&logo=oracle&logoColor=white" />
   <img src="https://img.shields.io/badge/PL/SQL-00D2FF?style=flat-square&logoColor=white" />
+
 </div>
 
 ---
 
 ### 🚀 Production Ecosystem
+
 <img align="right" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXd5ZnJqdXJid3R4NzhpOWVkeWUweTZ6ODFxMmZic2RhcDEzbGEwNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/md8IyVfwAr8xW/giphy.gif" width="15%" style="max-width: 150px; border-radius: 8px; margin-left: 15px; margin-bottom: 10px;" alt="V8 Execution" />
 
 * **ChatVat:** Universal RAG Chatbot CLI (Zero-dependency Docker)
@@ -63,23 +71,27 @@ $ madhav --status --verbose
 
 ### 🏆 Problem Solving
 
-<div align="center">
-  <img align="right" src="./blob/vk18.jpeg" height="310" style="border-radius: 8px; margin-left: 15px;" alt="King 18 Discipline" />
-  
-  <a href="https://leetcode.com/SmartKapila/">
-    <img src="./dist/dsa_card.svg" width="400" alt="Live DSA Metrics" style="margin-bottom: 10px;" />
-  </a>
-  <br>
-  <a href="https://www.codechef.com/users/madhavkapila">
-    <img src="./dist/cp_card.svg" width="400" alt="Live CP Metrics" />
-  </a>
-</div>
-
-<br clear="both">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="left" valign="top">
+      <a href="https://leetcode.com/SmartKapila/">
+        <img src="./dist/dsa_card.svg" alt="Live DSA Metrics" />
+      </a>
+      <br><br>
+      <a href="https://www.codechef.com/users/SmartK">
+        <img src="./dist/cp_card.svg" alt="Live CP Metrics" />
+      </a>
+    </td>
+    <td align="right" valign="top">
+      <img src="./blob/vk18.jpeg" height="320" style="border-radius: 8px;" alt="King 18 Discipline" />
+    </td>
+  </tr>
+</table>
 
 ---
 
-### 📊 GitHub Analytics & Impact
+### 📊 GitHub Analytics & Vibe
+
 <div align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="./dist/github-contribution-grid-snake-dark.svg">
@@ -90,4 +102,6 @@ $ madhav --status --verbose
 
 <br>
 
-*(lowlighter/metrics GitHub Action will inject the terminal-style dashboard here)*
+<div align="center">
+  <img src="./github-metrics.svg" width="100%" alt="Detailed GitHub Metrics">
+</div>
