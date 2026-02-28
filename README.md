@@ -93,21 +93,38 @@ $ madhav --status --verbose
 ### 📊 Open Source Analytics & Impact
 
 <div align="center">
-  <img src="https://komarev.com/ghpvc/?username=madhavkapila&label=Profile%20Views&color=8B44FC&style=flat-square" alt="Profile Views" />
+  <img src="https://komarev.com/ghpvc/?username=madhavkapila&label=PROFILE+VIEWS&color=8B44FC&style=for-the-badge" alt="Profile Views" />
 </div>
 
 <br>
 
 <div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./dist/github-contribution-grid-snake-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="./dist/github-contribution-grid-snake.svg">
-    <img alt="GitHub Contribution Snake" src="./dist/github-contribution-grid-snake.svg" width="100%">
-  </picture>
+  <a href="https://github.com/ryo-ma/github-profile-trophy">
+    <img src="https://github-profile-trophy.vercel.app/?username=madhavkapila&theme=tokyonight&column=7&no-bg=true&no-frame=true&margin-w=15" width="100%" alt="GitHub Trophies" />
+  </a>
 </div>
 
 <br>
 
 <div align="center">
-  <img src="./github-metrics.svg" width="100%" alt="Detailed Graphical Metrics">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: transparent;">
+    <tr>
+      <td align="center" width="50%" valign="top">
+        <img src="https://github-readme-stats-fast.vercel.app/api?username=madhavkapila&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true" alt="GitHub Stats" width="100%" style="max-width: 420px;"/>
+      </td>
+      <td align="center" width="50%" valign="top">
+        <img src="https://github-readme-streak-stats.herokuapp.com/?user=madhavkapila&theme=tokyonight&hide_border=true" alt="GitHub Streak" width="100%" style="max-width: 420px;"/>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" width="50%" valign="top">
+        <br>
+        <img src="./github-metrics-habits.svg" alt="Coding Habits & Languages" width="100%" style="max-width: 420px;"/>
+      </td>
+      <td align="center" width="50%" valign="top">
+        <br>
+        <img src="./github-metrics-music.svg" alt="YouTube Music Vibe" width="100%" style="max-width: 420px;"/>
+      </td>
+    </tr>
+  </table>
 </div>

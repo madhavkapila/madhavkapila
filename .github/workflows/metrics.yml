@@ -39,44 +39,35 @@ jobs:
           commit_message: "Auto-generate Live Custom Cards & Snake"
           file_pattern: 'dist/*.svg'
 
-      - name: Generate Graphical GitHub Analytics
+      # CARD 1: Habits & Languages (No Base Stats, No Zeroes)
+      - name: Generate Habits & Languages Card
         uses: lowlighter/metrics@latest
         with:
-          # IMPORTANT: Requires a Personal Access Token in your repo secrets for Traffic stats
-          token: ${{ secrets.METRICS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           user: madhavkapila
           template: classic
-          config_theme: tokyonight
-          filename: github-metrics.svg
+          filename: github-metrics-habits.svg
           config_timezone: Asia/Kolkata
-          
-          # 1. Base Stats (Replaces the broken github-readme-stats)
-          base: header, activity, repositories
-          
-          # 2. Achievements (Replaces the broken github-profile-trophy)
-          plugin_achievements: yes
-          plugin_achievements_display: compact
-          plugin_achievements_threshold: C
-          
-          # 3. Coding Habits (Graphical charts)
+          base: "" # This removes all the 0 releases / 0 packages junk
+          plugin_languages: yes
+          plugin_languages_limit: 6
           plugin_habits: yes
           plugin_habits_from: 200
           plugin_habits_days: 14
-          plugin_habits_facts: yes
           plugin_habits_charts: yes
-          
-          # 4. Languages Used
-          plugin_languages: yes
-          plugin_languages_limit: 8
-          
-          # 5. Official LeetCode Plugin
-          plugin_leetcode: yes
-          plugin_leetcode_user: SmartKapila
-          plugin_leetcode_sections: solved, skills, recent
-          
-          # 6. Repositories Traffic
-          plugin_traffic: yes
-          
-          # 7. 3D Contribution Graph (Great for moderate activity)
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: half-year
+
+      # CARD 2: YouTube Music 
+      - name: Generate YT Music Card
+        uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          user: madhavkapila
+          template: classic
+          filename: github-metrics-music.svg
+          config_timezone: Asia/Kolkata
+          base: "" 
+          plugin_music: yes
+          plugin_music_provider: youtube
+          plugin_music_mode: playlist
+          # IMPORTANT: Put your public YouTube playlist ID here!
+          plugin_music_playlist: RDCLAK5uy_kuo_NioExeUmw07dFf8BzQ64DFFTlgE7Q
