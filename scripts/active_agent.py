@@ -29,7 +29,7 @@ question = issue_data.get('body', '') or issue_data.get('title', '')
 # --- 2. Embed the Question ---
 try:
     embed_result = client.models.embed_content(
-        model="text-embedding-004",
+        model="gemini-embedding-001",
         contents=question,
         config=types.EmbedContentConfig(task_type="RETRIEVAL_QUERY")
     )
