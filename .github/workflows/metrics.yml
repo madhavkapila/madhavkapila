@@ -36,15 +36,12 @@ jobs:
 
       # Offline Trophies Generator
       - name: Generate GitHub Trophies Offline
-        uses: soulteary/profile-trophy-action@main
+        uses: ryo-ma/github-profile-trophy@master
         with:
           username: madhavkapila
-          theme: tokyonight
-          column: 7
-          no-bg: true
-          no-frame: true
-          margin-w: 15
           output_path: dist/github-trophies.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
 
       - name: Commit Custom SVGs to Repo
         uses: stefanzweifel/git-auto-commit-action@v4
