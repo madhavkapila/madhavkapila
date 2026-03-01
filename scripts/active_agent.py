@@ -7,11 +7,11 @@ from google import genai
 from google.genai import types
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+METRICS_GITHUB_TOKEN = os.environ.get("METRICS_GITHUB_TOKEN")
 REPO = os.environ.get("GITHUB_REPOSITORY")
 ISSUE_NUMBER = os.environ.get("ISSUE_NUMBER")
 
-if not all([GEMINI_API_KEY, GITHUB_TOKEN, REPO, ISSUE_NUMBER]):
+if not all([GEMINI_API_KEY, METRICS_GITHUB_TOKEN, REPO, ISSUE_NUMBER]):
     print("Error: Missing environment variables.")
     exit(1)
 
@@ -19,7 +19,7 @@ client = genai.Client(api_key=GEMINI_API_KEY)
 
 # --- 1. Fetch Recruiter Question ---
 headers = {
-    'Authorization': f'token {GITHUB_TOKEN}', 
+    'Authorization': f'token {METRICS_GITHUB_TOKEN}', 
     'Accept': 'application/vnd.github.v3+json',
     'X-GitHub-Api-Version': '2022-11-28'
 }

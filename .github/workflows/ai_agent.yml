@@ -24,10 +24,16 @@ jobs:
       - name: Build Vector DB & Generate Pulse
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          METRICS_GITHUB_TOKEN: ${{ secrets.METRICS_GITHUB_TOKEN }}
         run: |
           python scripts/passive_pulse.py
           python scripts/build_vector_db.py
+
+      - name: Sync with Remote (Fix Race Condition)
+        run: |
+          git config pull.rebase false
+          git pull origin main
+
       - name: Commit DB & Profile Updates
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
@@ -48,6 +54,6 @@ jobs:
       - name: Execute O(1) RAG Query
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          METRICS_GITHUB_TOKEN: ${{ secrets.METRICS_GITHUB_TOKEN }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: python scripts/active_agent.py

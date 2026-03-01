@@ -40,7 +40,7 @@ jobs:
         with:
           username: madhavkapila
           output_path: dist/github-trophies.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.METRICS_GITHUB_TOKEN }}
 
       # 🚀 THE FIX: Pull the AI Agent's commits before trying to push the SVGs
       - name: Sync with Remote (Fix Race Condition)
@@ -58,7 +58,7 @@ jobs:
       - name: Generate Lifetime Languages Card
         uses: lowlighter/metrics@master
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.METRICS_GITHUB_TOKEN }}
           user: madhavkapila
           template: classic
           config_theme: tokyonight
@@ -68,13 +68,15 @@ jobs:
           plugin_languages: yes
           plugin_languages_limit: 8
           plugin_languages_details: percentage
-          plugin_languages_indepth: no
+          plugin_languages_indepth: yes
+          plugin_languages_recent_days: 1000
+          plugin_languages_recent_load: 1000
 
       # CARD 2: Isometric Commit Calendar
       - name: Generate Isometric Calendar
         uses: lowlighter/metrics@master
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.METRICS_GITHUB_TOKEN }}
           user: madhavkapila
           template: classic
           config_theme: tokyonight

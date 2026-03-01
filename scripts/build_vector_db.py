@@ -7,16 +7,16 @@ from google import genai
 from google.genai import types
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+METRICS_GITHUB_TOKEN = os.environ.get("METRICS_GITHUB_TOKEN")
 USERNAME = "madhavkapila"
 
-if not GEMINI_API_KEY or not GITHUB_TOKEN:
+if not GEMINI_API_KEY or not METRICS_GITHUB_TOKEN:
     print("Error: Missing API Keys")
     exit(1)
 
 client = genai.Client(api_key=GEMINI_API_KEY)
-headers = {'Authorization': f'token {GITHUB_TOKEN}'}
-raw_headers = {'Authorization': f'token {GITHUB_TOKEN}', 'Accept': 'application/vnd.github.v3.raw'}
+headers = {'Authorization': f'token {METRICS_GITHUB_TOKEN}'}
+raw_headers = {'Authorization': f'token {METRICS_GITHUB_TOKEN}', 'Accept': 'application/vnd.github.v3.raw'}
 
 print("Starting Exhaustive GitHub Scrape...")
 
@@ -39,8 +39,6 @@ for r in repos:
     lang = r.get('language') or 'Multiple/None'
     branch = r.get('default_branch', 'main')
 
-    print(f"Scraping deep context for: {name}")
-
     # A. Base Context
     chunks.append(f"Repository: {name}\nDescription: {desc}\nPrimary Language: {lang}")
 
@@ -49,57 +47,76 @@ for r in repos:
     if commits_res.status_code == 200:
         commits = commits_res.json()
         if commits:
-            commit_msgs = [c['commit']['message'] for c in commits[:10]] # Get top 10 recent commits
+            commit_msgs = [c['commit']['message'] for c in commits[:10]]
             chunks.append(f"Recent activity by Madhav on project '{name}' (Last 7 days):\n" + "\n".join(commit_msgs))
 
-    # C. Directory Structure (Architecture)
+    # C. Directory Structure
     tree_res = requests.get(f"https://api.github.com/repos/{USERNAME}/{name}/git/trees/{branch}?recursive=1", headers=headers)
     if tree_res.status_code == 200:
         tree = tree_res.json().get('tree', [])
-        # Extract files (blobs), ignore folders (trees) to save space, limit to top 40 important files
         paths = [item['path'] for item in tree if item['type'] == 'blob']
         if paths:
             struct = "\n".join(paths[:40])
             chunks.append(f"Directory and File Structure for project '{name}':\n{struct}")
 
-    # D. Exhaustive README Scrape (Chunked)
+    # D. README Scrape
     readme_res = requests.get(f"https://api.github.com/repos/{USERNAME}/{name}/readme", headers=raw_headers)
     if readme_res.status_code == 200:
         readme_text = readme_res.text
-        # Split large READMEs into 1500-character chunks so embeddings stay highly focused
         for i in range(0, len(readme_text), 1500):
             chunks.append(f"Technical README for '{name}' (Part {i//1500 + 1}):\n{readme_text[i:i+1500]}")
 
-# Filter out empty or tiny chunks
-chunks = [chunk for chunk in chunks if len(chunk.strip()) > 10]
-print(f"Total chunks generated: {len(chunks)}")
+chunks = [chunk.strip() for chunk in chunks if len(chunk.strip()) > 10]
 
-# --- 3. Batch Embeddings (Respecting 100 RPM Limit) ---
-vector_db = []
-BATCH_SIZE = 100 # Gemini allows up to 100 strings per API request
+# --- 3. THE SMART UPSERT LOGIC ---
+existing_db = {}
+try:
+    with open(".github/data/vector_db.json", "r", encoding="utf-8") as f:
+        old_db = json.load(f)
+        for item in old_db:
+            # Map existing text directly to its embedding
+            existing_db[item['text']] = item['embedding']
+    print(f"Loaded {len(existing_db)} existing embeddings from cache.")
+except FileNotFoundError:
+    print("No existing DB found. Performing full initial build.")
 
-for i in range(0, len(chunks), BATCH_SIZE):
-    batch = chunks[i:i+BATCH_SIZE]
-    print(f"Embedding batch {i//BATCH_SIZE + 1}...")
-    
-    try:
-        result = client.models.embed_content(
-            model="gemini-embedding-001",
-            contents=batch,
-            config=types.EmbedContentConfig(task_type="RETRIEVAL_DOCUMENT")
-        )
+final_db = []
+chunks_to_embed = []
+
+# Filter chunks: if it hasn't changed, reuse the old embedding. If it's new, queue it for the API.
+for chunk in chunks:
+    if chunk in existing_db:
+        final_db.append({"text": chunk, "embedding": existing_db[chunk]})
+    else:
+        chunks_to_embed.append(chunk)
+
+print(f"Total chunks: {len(chunks)}. New/Modified chunks needing API calls: {len(chunks_to_embed)}")
+
+# --- 4. Batch Embed ONLY New Chunks ---
+if chunks_to_embed:
+    BATCH_SIZE = 100
+    for i in range(0, len(chunks_to_embed), BATCH_SIZE):
+        batch = chunks_to_embed[i:i+BATCH_SIZE]
+        print(f"Embedding new batch {i//BATCH_SIZE + 1}...")
         
-        for text, emb in zip(batch, result.embeddings):
-            vector_db.append({"text": text, "embedding": emb.values})
+        try:
+            result = client.models.embed_content(
+                model="gemini-embedding-001",
+                contents=batch,
+                config=types.EmbedContentConfig(task_type="RETRIEVAL_DOCUMENT")
+            )
             
-    except Exception as e:
-        print(f"Embedding Error on batch {i//BATCH_SIZE + 1}: {e}")
-    
-    time.sleep(2) # Safe 2-second buffer between batches to guarantee we never hit the RPM limit
+            for text, emb in zip(batch, result.embeddings):
+                final_db.append({"text": text, "embedding": emb.values})
+                
+        except Exception as e:
+            print(f"Embedding Error on batch {i//BATCH_SIZE + 1}: {e}")
+        
+        time.sleep(2) # Safe buffer
 
-# --- 4. Save Database ---
+# --- 5. Save the Pruned & Updated Database ---
 os.makedirs(".github/data", exist_ok=True)
 with open(".github/data/vector_db.json", "w", encoding="utf-8") as f:
-    json.dump(vector_db, f)
+    json.dump(final_db, f)
 
-print("✅ Exhaustive Public Vector DB compiled and saved securely!")
+print(f"✅ Upsert Complete! Saved {len(final_db)} total chunks to vector_db.json securely.")
