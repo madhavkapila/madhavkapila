@@ -7,7 +7,7 @@ from google import genai
 from google.genai import types
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN") # 🔒 Firewall: Using the default, unprivileged token!
 USERNAME = "madhavkapila"
 
 if not GEMINI_API_KEY or not GITHUB_TOKEN:
@@ -25,7 +25,7 @@ try:
     with open(".github/data/madhavgit_brain.md", "r", encoding="utf-8") as f:
         chunks = f.read().split("\n\n")
 except FileNotFoundError:
-    print("Error: madhavgit_brain.md not found. Ensure the path is correct.")
+    print("Error: madhavgit_brain.md not found.")
     chunks = []
 
 # --- 2. Exhaustive Repo Scrape ---
@@ -35,6 +35,7 @@ repos = requests.get(repos_url, headers=headers).json()
 one_week_ago = (datetime.datetime.utcnow() - datetime.timedelta(days=7)).isoformat() + "Z"
 
 for r in repos:
+    # 🚨 SECURITY PROTOCOL: Explicitly skip private repos (though the token blocks them anyway)
     if r.get('private') is True:
         continue
         
@@ -43,10 +44,8 @@ for r in repos:
     lang = r.get('language') or 'Multiple/None'
     branch = r.get('default_branch', 'main')
 
-    # A. Base Context
     chunks.append(f"Repository: {name}\nDescription: {desc}\nPrimary Language: {lang}")
 
-    # B. Last 7 Days of Commits
     commits_res = requests.get(f"https://api.github.com/repos/{USERNAME}/{name}/commits?since={one_week_ago}", headers=headers)
     if commits_res.status_code == 200:
         commits = commits_res.json()
@@ -54,7 +53,6 @@ for r in repos:
             commit_msgs = [c['commit']['message'] for c in commits[:10]]
             chunks.append(f"Recent activity by Madhav on project '{name}' (Last 7 days):\n" + "\n".join(commit_msgs))
 
-    # C. Directory Structure
     tree_res = requests.get(f"https://api.github.com/repos/{USERNAME}/{name}/git/trees/{branch}?recursive=1", headers=headers)
     if tree_res.status_code == 200:
         tree = tree_res.json().get('tree', [])
@@ -63,7 +61,6 @@ for r in repos:
             struct = "\n".join(paths[:40])
             chunks.append(f"Directory and File Structure for project '{name}':\n{struct}")
 
-    # D. README Scrape
     readme_res = requests.get(f"https://api.github.com/repos/{USERNAME}/{name}/readme", headers=raw_headers)
     if readme_res.status_code == 200:
         readme_text = readme_res.text
@@ -108,7 +105,7 @@ if chunks_to_embed:
         for attempt in range(MAX_RETRIES):
             try:
                 result = client.models.embed_content(
-                    model="gemini-embedding-001",
+                    model="text-embedding-004", # Updated to current model name
                     contents=batch,
                     config=types.EmbedContentConfig(task_type="RETRIEVAL_DOCUMENT")
                 )
@@ -117,19 +114,18 @@ if chunks_to_embed:
                     final_db.append({"text": text, "embedding": emb.values})
                 
                 print(f"✅ Batch {batch_num} successful.")
-                break  # Break out of retry loop on success
+                break 
                 
             except Exception as e:
                 print(f"⚠️ API Error on batch {batch_num} (Attempt {attempt + 1}): {e}")
                 if attempt < MAX_RETRIES - 1:
-                    # 🚀 The 65-second freeze to guarantee the 100 RPM quota bucket resets
                     wait_time = 65 
                     print(f"⏸️ Rate limit suspected. Sleeping for {wait_time} seconds before retrying...")
                     time.sleep(wait_time)
                 else:
-                    print(f"❌ Failed to embed batch {batch_num} after {MAX_RETRIES} attempts. Skipping this batch.")
+                    print(f"❌ Failed to embed batch {batch_num} after {MAX_RETRIES} attempts. Skipping.")
         
-        time.sleep(2) # Normal safe buffer between successful requests
+        time.sleep(2) 
 
 # --- 5. Save the Pruned & Updated Database ---
 os.makedirs(".github/data", exist_ok=True)
