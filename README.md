@@ -22,6 +22,16 @@ $ madhav --status --verbose
 > "Compiling backends and heavy thoughts. O(1) focus."
 ```
 
+<div align="center">
+
+
+
+<a href="https://github.com/madhavkapila/madhavkapila/issues/new?title=Query%20for%20Madhav's%20AI%20PA&body=Hey%20Madhav's%20AI,%0A%0A[Type%20your%20question%20about%20Madhav's%20tech%20stack,%20projects,%20or%20experience%20here]%0A">
+  <img src="https://img.shields.io/badge/Ask_My_AI_Digital_Twin-30363D?style=for-the-badge&logo=github&logoColor=00D2FF&labelColor=0D1117" alt="Ask my AI a Question" />
+</a>
+<p><small><i>Click to open a query. My Digital Assistant will reply, close, and lock the thread instantly.</i></small></p>
+</div>
+
 ---
 
 ### 💻 The Engineering Arsenal
