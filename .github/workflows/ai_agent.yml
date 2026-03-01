@@ -44,7 +44,7 @@ jobs:
         uses: actions/setup-python@v4
         with: { python-version: '3.12' }
       - name: Install Fast Dependencies
-        run: pip install requests
+        run: pip install requests google-genai
       - name: Execute O(1) RAG Query
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
