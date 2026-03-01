@@ -14,7 +14,7 @@ if not GENAI_KEY:
 
 # Fetch today's commits safely
 headers = {'Authorization': f'token {METRICS_GITHUB_TOKEN}'}
-since = (datetime.datetime.utcnow() - datetime.timedelta(days=1)).isoformat() + "Z"
+since = (datetime.datetime.now(datetime.UTC) - datetime.timedelta(days=1)).isoformat()
 commits_url = f"https://api.github.com/repos/{REPO}/commits?since={since}"
 
 try:
@@ -43,7 +43,7 @@ Rules:
 try:
     client = genai.Client(api_key=GENAI_KEY)
     response = client.models.generate_content(
-        model="gemini-3-flash", 
+        model="gemini-3-flash-preview", 
         contents=prompt,
     )
     quote = response.text.strip().replace('"', '')
