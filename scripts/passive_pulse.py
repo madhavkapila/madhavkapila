@@ -5,7 +5,7 @@ from google import genai
 
 # Configure API Keys
 GENAI_KEY = os.environ.get("GEMINI_API_KEY")
-METRICS_GITHUB_TOKEN = os.environ.get("METRICS_GITHUB_TOKEN")
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 REPO = os.environ.get("GITHUB_REPOSITORY", "madhavkapila/madhavkapila")
 
 if not GENAI_KEY:
@@ -13,7 +13,7 @@ if not GENAI_KEY:
     exit(1)
 
 # Fetch today's commits safely
-headers = {'Authorization': f'token {METRICS_GITHUB_TOKEN}'}
+headers = {'Authorization': f'token {GITHUB_TOKEN}'}
 since = (datetime.datetime.now(datetime.UTC) - datetime.timedelta(days=1)).isoformat()
 commits_url = f"https://api.github.com/repos/{REPO}/commits?since={since}"
 

@@ -7,22 +7,26 @@ from google import genai
 from google.genai import types
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
-METRICS_GITHUB_TOKEN = os.environ.get("METRICS_GITHUB_TOKEN")
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 USERNAME = "madhavkapila"
 
-if not GEMINI_API_KEY or not METRICS_GITHUB_TOKEN:
+if not GEMINI_API_KEY or not GITHUB_TOKEN:
     print("Error: Missing API Keys")
     exit(1)
 
 client = genai.Client(api_key=GEMINI_API_KEY)
-headers = {'Authorization': f'token {METRICS_GITHUB_TOKEN}'}
-raw_headers = {'Authorization': f'token {METRICS_GITHUB_TOKEN}', 'Accept': 'application/vnd.github.v3.raw'}
+headers = {'Authorization': f'token {GITHUB_TOKEN}'}
+raw_headers = {'Authorization': f'token {GITHUB_TOKEN}', 'Accept': 'application/vnd.github.v3.raw'}
 
 print("Starting Exhaustive GitHub Scrape...")
 
 # --- 1. Load the Brain (Resume Data) ---
-with open(".github/data/madhavgit_brain.md", "r", encoding="utf-8") as f:
-    chunks = f.read().split("\n\n")
+try:
+    with open(".github/data/madhavgit_brain.md", "r", encoding="utf-8") as f:
+        chunks = f.read().split("\n\n")
+except FileNotFoundError:
+    print("Error: madhavgit_brain.md not found. Ensure the path is correct.")
+    chunks = []
 
 # --- 2. Exhaustive Repo Scrape ---
 repos_url = f"https://api.github.com/users/{USERNAME}/repos?sort=updated&per_page=15"
@@ -46,7 +50,7 @@ for r in repos:
     commits_res = requests.get(f"https://api.github.com/repos/{USERNAME}/{name}/commits?since={one_week_ago}", headers=headers)
     if commits_res.status_code == 200:
         commits = commits_res.json()
-        if commits:
+        if commits and isinstance(commits, list):
             commit_msgs = [c['commit']['message'] for c in commits[:10]]
             chunks.append(f"Recent activity by Madhav on project '{name}' (Last 7 days):\n" + "\n".join(commit_msgs))
 
@@ -74,7 +78,6 @@ try:
     with open(".github/data/vector_db.json", "r", encoding="utf-8") as f:
         old_db = json.load(f)
         for item in old_db:
-            # Map existing text directly to its embedding
             existing_db[item['text']] = item['embedding']
     print(f"Loaded {len(existing_db)} existing embeddings from cache.")
 except FileNotFoundError:
@@ -83,7 +86,6 @@ except FileNotFoundError:
 final_db = []
 chunks_to_embed = []
 
-# Filter chunks: if it hasn't changed, reuse the old embedding. If it's new, queue it for the API.
 for chunk in chunks:
     if chunk in existing_db:
         final_db.append({"text": chunk, "embedding": existing_db[chunk]})
@@ -92,27 +94,42 @@ for chunk in chunks:
 
 print(f"Total chunks: {len(chunks)}. New/Modified chunks needing API calls: {len(chunks_to_embed)}")
 
-# --- 4. Batch Embed ONLY New Chunks ---
+# --- 4. Batch Embed ONLY New Chunks (With Fault Tolerance) ---
 if chunks_to_embed:
     BATCH_SIZE = 100
+    MAX_RETRIES = 3
+    
     for i in range(0, len(chunks_to_embed), BATCH_SIZE):
         batch = chunks_to_embed[i:i+BATCH_SIZE]
-        print(f"Embedding new batch {i//BATCH_SIZE + 1}...")
+        batch_num = i // BATCH_SIZE + 1
+        total_batches = (len(chunks_to_embed) - 1) // BATCH_SIZE + 1
+        print(f"Embedding new batch {batch_num}/{total_batches}...")
         
-        try:
-            result = client.models.embed_content(
-                model="gemini-embedding-001",
-                contents=batch,
-                config=types.EmbedContentConfig(task_type="RETRIEVAL_DOCUMENT")
-            )
-            
-            for text, emb in zip(batch, result.embeddings):
-                final_db.append({"text": text, "embedding": emb.values})
+        for attempt in range(MAX_RETRIES):
+            try:
+                result = client.models.embed_content(
+                    model="gemini-embedding-001",
+                    contents=batch,
+                    config=types.EmbedContentConfig(task_type="RETRIEVAL_DOCUMENT")
+                )
                 
-        except Exception as e:
-            print(f"Embedding Error on batch {i//BATCH_SIZE + 1}: {e}")
+                for text, emb in zip(batch, result.embeddings):
+                    final_db.append({"text": text, "embedding": emb.values})
+                
+                print(f"✅ Batch {batch_num} successful.")
+                break  # Break out of retry loop on success
+                
+            except Exception as e:
+                print(f"⚠️ API Error on batch {batch_num} (Attempt {attempt + 1}): {e}")
+                if attempt < MAX_RETRIES - 1:
+                    # 🚀 The 65-second freeze to guarantee the 100 RPM quota bucket resets
+                    wait_time = 65 
+                    print(f"⏸️ Rate limit suspected. Sleeping for {wait_time} seconds before retrying...")
+                    time.sleep(wait_time)
+                else:
+                    print(f"❌ Failed to embed batch {batch_num} after {MAX_RETRIES} attempts. Skipping this batch.")
         
-        time.sleep(2) # Safe buffer
+        time.sleep(2) # Normal safe buffer between successful requests
 
 # --- 5. Save the Pruned & Updated Database ---
 os.makedirs(".github/data", exist_ok=True)
