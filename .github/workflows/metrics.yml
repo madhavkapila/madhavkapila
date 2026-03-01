@@ -42,6 +42,11 @@ jobs:
           output_path: dist/github-trophies.svg
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      # 🚀 THE FIX: Pull the AI Agent's commits before trying to push the SVGs
+      - name: Sync with Remote (Fix Race Condition)
+        run: |
+          git config pull.rebase false
+          git pull origin main
 
       - name: Commit Custom SVGs to Repo
         uses: stefanzweifel/git-auto-commit-action@v4
