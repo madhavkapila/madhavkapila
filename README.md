@@ -57,7 +57,7 @@ $ madhav --status --verbose
 
 ### 🚀 Production Ecosystem
 
-<img align="right" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXd5ZnJqdXJid3R4NzhpOWVkeWUweTZ6ODFxMmZic2RhcDEzbGEwNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/md8IyVfwAr8xW/giphy.gif" width="15%" style="max-width: 150px; border-radius: 8px; margin-left: 15px; margin-bottom: 10px;" alt="V8 Execution" />
+<img align="right" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXd5ZnJqdXJid3R4NzhpOWVkeWUweTZ6ODFxMmZic2RhcDEzbGEwNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/md8IyVfwAr8xW/giphy.gif" width="25%" style="max-width: 200px; border-radius: 8px; margin-left: 15px; margin-bottom: 10px;" alt="V8 Execution" />
 
 * **ChatVat:** Universal RAG Chatbot CLI (Zero-dependency Docker)
 * **MentorMatch:** AWS Distributed Matchmaker (Zero-downtime CI/CD)
@@ -71,19 +71,19 @@ $ madhav --status --verbose
 
 ### 🏆 Problem Solving
 
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: transparent;">
   <tr>
-    <td align="left" valign="top">
+    <td width="60%" align="left" valign="middle">
       <a href="https://leetcode.com/SmartKapila/">
-        <img src="./dist/dsa_card.svg" alt="Live DSA Metrics" />
+        <img src="./dist/dsa_card.svg" width="100%" style="max-width: 420px; margin-bottom: 15px;" alt="Live DSA Metrics" />
       </a>
-      <br><br>
+      <br>
       <a href="https://www.codechef.com/users/SmartK">
-        <img src="./dist/cp_card.svg" alt="Live CP Metrics" />
+        <img src="./dist/cp_card.svg" width="100%" style="max-width: 420px;" alt="Live CP Metrics" />
       </a>
     </td>
-    <td align="right" valign="top">
-      <img src="./blob/vk18.jpeg" height="320" style="border-radius: 8px;" alt="King 18 Discipline" />
+    <td width="50%" align="right" valign="middle">
+      <img src="./blob/vk18.jpeg" width="100%" style="max-width: 220px; border-radius: 8px;" alt="King 18 Discipline" />
     </td>
   </tr>
 </table>
@@ -125,4 +125,18 @@ $ madhav --status --verbose
       </td>
     </tr>
   </table>
+</div>
+
+<br>
+
+<div align="center">
+  <img src="./github-metrics-isocalendar.svg" width="100%" style="max-width: 800px;" alt="Isometric Commit Calendar" />
+</div>
+
+<br>
+
+---
+
+<div align="center">
+  <p><i>"God's plan, baby!"</i> — <b>VK18</b></p>
 </div>

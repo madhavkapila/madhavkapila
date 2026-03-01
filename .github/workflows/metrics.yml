@@ -39,9 +39,9 @@ jobs:
           commit_message: "Auto-generate Live Custom Cards & Snake"
           file_pattern: 'dist/*.svg'
 
-      # CARD 1: Native GitHub Trophies (Replaces the broken Vercel link)
+      # CARD 1: Native GitHub Trophies (MUST USE @master)
       - name: Generate Native Trophies
-        uses: lowlighter/metrics@latest
+        uses: lowlighter/metrics@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           user: madhavkapila
@@ -53,9 +53,9 @@ jobs:
           plugin_achievements_display: compact
           plugin_achievements_threshold: C
 
-      # CARD 2: Habits & Languages (Optimized to prevent timeout errors)
+      # CARD 2: Habits & Languages (MUST USE @master to fix author bug)
       - name: Generate Habits & Languages Card
-        uses: lowlighter/metrics@latest
+        uses: lowlighter/metrics@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           user: madhavkapila
@@ -64,17 +64,21 @@ jobs:
           config_timezone: Asia/Kolkata
           base: "" 
           plugin_languages: yes
-          plugin_languages_limit: 6
+          plugin_languages_limit: 20
+          plugin_languages_details: percentage
+          plugin_languages_indepth: yes
           plugin_habits: yes
-          plugin_habits_from: 100
-          plugin_habits_days: 14
+          plugin_habits_from: 1000
+          plugin_habits_days: 60
+          plugin_habits_facts: yes
+          plugin_habits_trim: yes
           plugin_habits_charts: yes
           retries: 3
           retries_delay: 300
 
-      # CARD 3: YouTube Music (Must use a PL... playlist ID)
+      # CARD 3: YouTube Music 
       - name: Generate YT Music Card
-        uses: lowlighter/metrics@latest
+        uses: lowlighter/metrics@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           user: madhavkapila
@@ -85,6 +89,18 @@ jobs:
           plugin_music: yes
           plugin_music_provider: youtube
           plugin_music_mode: playlist
-          # IMPORTANT: Replace with your static PL... ID
           plugin_music_playlist: PLiNce0QIvDSm00HL2FoOskaCFuNTEeR2v
           retries: 3
+
+      # CARD 4: Isometric Commit Calendar
+      - name: Generate Isometric Calendar
+        uses: lowlighter/metrics@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          user: madhavkapila
+          template: classic
+          filename: github-metrics-isocalendar.svg
+          config_timezone: Asia/Kolkata
+          base: "" 
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
