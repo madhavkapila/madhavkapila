@@ -2,12 +2,12 @@ name: Madhav AI Ecosystem
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Nightly Passive Pulse
+    - cron: '0 0 * * *' # Midnight cron
   issues:
-    types: [opened]     # Instant Active Agent
+    types: [opened]
 
 jobs:
-  passive-pulse:
+  passive-pulse-and-db-build:
     if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
     permissions:
@@ -17,19 +17,21 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with: { python-version: '3.10' }
-      - name: Install Dependencies
+      - name: Install dependencies
         run: pip install requests google-generativeai
-      - name: Run Gemini Flash Daily Pulse
+      - name: Build Vector DB & Generate Pulse
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/passive_pulse.py
-      - name: Commit AI Update
+        run: |
+          python scripts/passive_pulse.py
+          python scripts/build_vector_db.py
+      - name: Commit DB & Profile Updates
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "🤖 AI Pulse: Daily Vibe Check"
+          commit_message: "🤖 System Update: Recompiled Vector DB & Daily Pulse"
 
-  active-agent:
+  active-agent-fast:
     if: github.event_name == 'issues'
     runs-on: ubuntu-latest
     permissions:
@@ -39,11 +41,11 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with: { python-version: '3.10' }
-      - name: Install Dependencies
-        run: pip install requests langchain langchain-community langchain-huggingface langchain-google-genai faiss-cpu sentence-transformers
-      - name: Run Gemma 3 RAG Agent
+      - name: Install Fast Dependencies
+        run: pip install requests
+      - name: Execute O(1) RAG Query
         env:
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: python scripts/active_agent.py
