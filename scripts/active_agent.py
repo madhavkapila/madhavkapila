@@ -67,7 +67,7 @@ Always speak in the third person."""
 prompt = f"CONTEXT FROM GITHUB & RESUME:\n{context}\n\nRECRUITER QUESTION: {question}"
 full_prompt = f"{system_instruction}\n\n{prompt}"
 
-MODELS_TO_TRY = ["gemma-3-12b-it", "gemma-3-4b-it", "gemma-3-27b-it", "gemma-3-2b-it"]
+MODELS_TO_TRY = ["gemma-3-12b-it", "gemma-3-4b-it", "gemma-3-27b-it", "gemma-3-2b-it", "gemini-2.5-flash"]  # Ordered by preference
 MAX_RETRIES = 3
 answer = None
 
@@ -94,3 +94,11 @@ for model in MODELS_TO_TRY:
 
 if not answer:
     answer = "🤖 All models are currently unavailable. Please wait for Madhav to reply himself"
+
+# --- 5. Post, Close, and Lock (THE MISSING CODE) ---
+print("Posting response back to GitHub Issue...")
+requests.post(f"{issue_url}/comments", headers=headers, json={"body": f"🤖 **Madhav's AI PA:**\n\n{answer}"})
+requests.patch(issue_url, headers=headers, json={"state": "closed"})
+requests.put(f"{issue_url}/lock", headers=headers, json={"lock_reason": "resolved"})
+
+print("✅ Active Agent replied, closed, and locked the issue successfully.")
