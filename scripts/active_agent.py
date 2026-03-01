@@ -65,14 +65,15 @@ Always speak in the third person."""
 
 prompt = f"CONTEXT FROM GITHUB & RESUME:\n{context}\n\nRECRUITER QUESTION: {question}"
 
+full_prompt = f"{system_instruction}\n\n{prompt}"
+
 try:
     # 🚀 Official SDK integration for Gemma 3
     response = client.models.generate_content(
-        model="gemma-3-12b-it",
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            system_instruction=system_instruction,
-            temperature=0.2
+    model="gemma-3-12b-it",
+    contents=full_prompt,
+    config=types.GenerateContentConfig(
+        temperature=0.2
         )
     )
     answer = response.text
