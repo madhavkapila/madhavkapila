@@ -55,9 +55,9 @@ if db:
     for item in db:
         item['score'] = cosine_similarity(q_embed, item['embedding'])
     db.sort(key=lambda x: x['score'], reverse=True)
-    context = "\n".join([item['text'] for item in db[:3]])
+    context = "\n".join([item['text'] for item in db[:6]])
 else:
-    context = "No database found. Tell user to email Madhav."
+    context = "No database found. Tell user to wait for Madhav to reply himself."
 
 # --- 4. Query with Retry + Fallback ---
 system_instruction = """You are Madhav Kapila's AI PA. He is a backend engineer focusing on RAG and Agentic AI.

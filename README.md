@@ -26,10 +26,10 @@ $ madhav --status --verbose
 
 
 
-<a href="https://github.com/madhavkapila/madhavkapila/issues/new?title=Query%20for%20Madhav's%20AI%20PA&body=Hey%20Madhav's%20AI,%0A%0A[Type%20your%20question%20about%20Madhav's%20tech%20stack,%20projects,%20or%20experience%20here]%0A">
-  <img src="https://img.shields.io/badge/Ask_My_AI_Digital_Twin-30363D?style=for-the-badge&logo=github&logoColor=00D2FF&labelColor=0D1117" alt="Ask my AI a Question" />
+<a href="https://github.com/madhavkapila/madhavkapila/issues/new?title=Query%20for%20Madhav&#39;s%20AI%20PA&body=Hey%20this%20side%20Madhav&#39;s%20AItwin%20,%0A%0A[Type%20your%20question%20about%20Madhav&#39;s%20tech%20stack,%20projects,%20or%20experience%20here.%20A%20dedicated%20AI%20Assistant%20will%20reply%20in%20under%205%20minutes.%0A]%0A">
+  <img src="https://img.shields.io/badge/Ask_My_AI_Digital_Twin-30363D?style=for-the-badge&logo=github&logoColor=00D2FF&labelColor=0D1117" alt="Ask my AI a Question"  width="60%"/>
 </a>
-<p><small><i>Click to open a query. My Digital Assistant will reply, close, and lock the thread instantly.</i></small></p>
+<p><i>Click to open a query. My Digital Assistant will reply, close, and lock the thread instantly.</i></p>
 </div>
 
 ---
@@ -66,7 +66,7 @@ $ madhav --status --verbose
 
 ### 🚀 Production Ecosystem
 
-<img align="right" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXd5ZnJqdXJid3R4NzhpOWVkeWUweTZ6ODFxMmZic2RhcDEzbGEwNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/md8IyVfwAr8xW/giphy.gif" width="25%" style="max-width: 200px; border-radius: 8px; margin-left: 15px; margin-bottom: 10px;" alt="V8 Execution" />
+<img align="right" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXd5ZnJqdXJid3R4NzhpOWVkeWUweTZ6ODFxMmZic2RhcDEzbGEwNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/md8IyVfwAr8xW/giphy.gif" width="25%" style="max-width: 175px; border-radius: 8px; margin-left: 15px; margin-bottom: 10px;" alt="V8 Execution" />
 
 * **ChatVat:** Universal RAG Chatbot CLI (Zero-dependency Docker)
 * **MentorMatch:** AWS Distributed Matchmaker (Zero-downtime CI/CD)
@@ -149,5 +149,5 @@ $ madhav --status --verbose
 ---
 
 <div align="center">
-  <p><i>"God's plan, baby!"</i> — <b>VK18</b></p>
+  <h2><i>"God's plan, baby!"</i> — <b>VK18</b></h2>
 </div>
