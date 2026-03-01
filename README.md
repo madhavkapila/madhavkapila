@@ -99,7 +99,7 @@ $ madhav --status --verbose
 <br>
 
 <div align="center">
-  <img src="./github-metrics-trophies.svg" width="100%" alt="GitHub Trophies" />
+  <img src="./dist/github-trophies.svg" width="100%" alt="GitHub Trophies" />
 </div>
 
 <br>
@@ -117,11 +117,11 @@ $ madhav --status --verbose
     <tr>
       <td align="center" width="50%" valign="top">
         <br>
-        <img src="./github-metrics-habits.svg" alt="Coding Habits & Languages" width="100%" style="max-width: 420px;"/>
+        <img src="./dist/github-metrics-habits.svg" alt="Coding Habits & Languages" width="100%" style="max-width: 420px;"/>
       </td>
       <td align="center" width="50%" valign="top">
         <br>
-        <img src="./github-metrics-music.svg" alt="YouTube Music Vibe" width="100%" style="max-width: 420px;"/>
+        <img src="./dist/github-metrics-music.svg" alt="YouTube Music Vibe" width="100%" style="max-width: 420px;"/>
       </td>
     </tr>
   </table>
@@ -130,7 +130,7 @@ $ madhav --status --verbose
 <br>
 
 <div align="center">
-  <img src="./github-metrics-isocalendar.svg" width="100%" style="max-width: 800px;" alt="Isometric Commit Calendar" />
+  <img src="./dist/github-metrics-isocalendar.svg" width="100%" style="max-width: 600px;" alt="Isometric Commit Calendar" />
 </div>
 
 <br>

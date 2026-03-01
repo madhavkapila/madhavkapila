@@ -22,9 +22,11 @@ jobs:
       - name: Install Dependencies
         run: pip install requests
 
+      # 1. Generate DSA & CP Cards
       - name: Generate Futuristic DSA/CP Cards
         run: python scripts/generate_cards.py
 
+      # 2. Generate Contribution Snake
       - name: Generate Contribution Snake
         uses: Platane/snk/svg-only@v3
         with:
@@ -33,73 +35,61 @@ jobs:
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
+      # 3. Generate Trophies LOCALLY (Bypasses dead Vercel servers entirely)
+      - name: Generate GitHub Trophies Offline
+        uses: ryo-ma/github-profile-trophy@master
+        with:
+          username: madhavkapila
+          output_path: dist/github-trophies.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # 4. Commit all local SVGs to the dist/ folder
       - name: Commit Custom SVGs to Repo
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "Auto-generate Live Custom Cards & Snake"
+          commit_message: "Auto-generate Live Custom Cards, Trophies & Snake"
           file_pattern: 'dist/*.svg'
 
-      # CARD 1: Native GitHub Trophies (MUST USE @master)
-      - name: Generate Native Trophies
-        uses: lowlighter/metrics@master
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          user: madhavkapila
-          template: classic
-          filename: github-metrics-trophies.svg
-          config_timezone: Asia/Kolkata
-          base: ""
-          plugin_achievements: yes
-          plugin_achievements_display: compact
-          plugin_achievements_threshold: C
-
-      # CARD 2: Habits & Languages (MUST USE @master to fix author bug)
+      # 5. Lowlighter Graphical Cards
       - name: Generate Habits & Languages Card
         uses: lowlighter/metrics@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           user: madhavkapila
           template: classic
-          filename: github-metrics-habits.svg
+          filename: dist/github-metrics-habits.svg
           config_timezone: Asia/Kolkata
           base: "" 
           plugin_languages: yes
-          plugin_languages_limit: 20
+          plugin_languages_limit: 8
           plugin_languages_details: percentage
           plugin_languages_indepth: yes
           plugin_habits: yes
-          plugin_habits_from: 1000
-          plugin_habits_days: 60
-          plugin_habits_facts: yes
-          plugin_habits_trim: yes
+          plugin_habits_from: 200
+          plugin_habits_days: 14
           plugin_habits_charts: yes
-          retries: 3
-          retries_delay: 300
 
-      # CARD 3: YouTube Music 
       - name: Generate YT Music Card
         uses: lowlighter/metrics@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           user: madhavkapila
           template: classic
-          filename: github-metrics-music.svg
+          filename: dist/github-metrics-music.svg
           config_timezone: Asia/Kolkata
           base: "" 
           plugin_music: yes
           plugin_music_provider: youtube
           plugin_music_mode: playlist
-          plugin_music_playlist: PLiNce0QIvDSm00HL2FoOskaCFuNTEeR2v
-          retries: 3
+          plugin_music_playlist: https://music.youtube.com/playlist?list=PLiNce0QIvDSm00HL2FoOskaCFuNTEeR2v
 
-      # CARD 4: Isometric Commit Calendar
       - name: Generate Isometric Calendar
         uses: lowlighter/metrics@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           user: madhavkapila
           template: classic
-          filename: github-metrics-isocalendar.svg
+          filename: dist/github-metrics-isocalendar.svg
           config_timezone: Asia/Kolkata
           base: "" 
           plugin_isocalendar: yes
