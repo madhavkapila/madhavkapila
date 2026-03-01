@@ -117,11 +117,13 @@ $ madhav --status --verbose
     <tr>
       <td align="center" width="50%" valign="top">
         <br>
-        <img src="./dist/github-metrics-habits.svg" alt="Coding Habits & Languages" width="100%" style="max-width: 420px;"/>
+        <img src="./dist/github-metrics-languages.svg" alt="Lifetime Languages" width="100%" style="max-width: 420px;"/>
       </td>
       <td align="center" width="50%" valign="top">
         <br>
-        <img src="./dist/github-metrics-music.svg" alt="YouTube Music Vibe" width="100%" style="max-width: 420px;"/>
+        <a href="https://music.youtube.com/playlist?list=PLiNce0QIvDSm00HL2FoOskaCFuNTEeR2v">
+          <img src="./dist/music_card.svg" alt="YouTube Music Vibe" width="100%" style="max-width: 420px;"/>
+        </a>
       </td>
     </tr>
   </table>

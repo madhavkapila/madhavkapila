@@ -1,11 +1,15 @@
 import os
 import requests
 import re
+import time
+import datetime
+import base64
 
 # --- EXACT USERNAMES ---
 LC_HANDLE = "SmartKapila"
 CC_HANDLE = "SmartK"
 CF_HANDLE = "smartk"
+YT_PLAYLIST_ID = "PLiNce0QIvDSm00HL2FoOskaCFuNTEeR2v"
 
 # --- FALLBACK STATS ---
 lc_total, lc_easy, lc_medium, lc_hard, lc_rating = "411", "150", "200", "61", "1473"
@@ -65,6 +69,40 @@ try:
 except Exception as e:
     print(f"CodeChef Scrape Failed (Using Fallbacks): {e}")
 
+# --- 4. FETCH YOUTUBE MUSIC (iPad Lock Screen Player) ---
+song_title = "Loading Track..."
+song_artist = "YouTube Music"
+cover_base64 = ""
+
+try:
+    xml_url = f"https://www.youtube.com/feeds/videos.xml?playlist_id={YT_PLAYLIST_ID}"
+    res = requests.get(xml_url, timeout=10)
+    
+    if res.status_code == 200:
+        video_ids = re.findall(r'<yt:videoId>(.*?)</yt:videoId>', res.text)
+        titles = re.findall(r'<title>(.*?)</title>', res.text)[1:] # Skip playlist title
+        authors = re.findall(r'<name>(.*?)</name>', res.text)
+        
+        if video_ids:
+            # Change the song daily based on the day of the year
+            day_of_year = datetime.datetime.now().timetuple().tm_yday
+            index = day_of_year % len(video_ids)
+            
+            vid_id = video_ids[index]
+            song_title = titles[index][:32] + ("..." if len(titles[index]) > 32 else "")
+            song_artist = authors[index][:25]
+            
+            # Fetch Thumbnail and Base64 encode it to bypass GitHub cache
+            thumb_url = f"https://i.ytimg.com/vi/{vid_id}/hqdefault.jpg"
+            img_res = requests.get(thumb_url, timeout=10)
+            if img_res.status_code == 200:
+                cover_base64 = base64.b64encode(img_res.content).decode('utf-8')
+except Exception as e:
+    print(f"Music Fetch Error: {e}")
+
+image_href = f"data:image/jpeg;base64,{cover_base64}" if cover_base64 else ""
+image_tag = f'<image x="15" y="15" width="110" height="110" preserveAspectRatio="xMidYMid slice" href="{image_href}" clip-path="url(#corners)"/>' if cover_base64 else f'<rect x="15" y="15" width="110" height="110" rx="12" fill="#30363D"/>'
+
 # --- SVG DESIGN 1: LEETCODE ---
 dsa_svg = f"""<svg width="420" height="180" viewBox="0 0 420 180" xmlns="http://www.w3.org/2000/svg">
     <rect width="420" height="180" rx="10" fill="#0D1117" stroke="#FFA116" stroke-width="2"/>
@@ -101,8 +139,36 @@ cp_svg = f"""<svg width="420" height="140" viewBox="0 0 420 140" xmlns="http://w
     </g>
 </svg>"""
 
+music_svg = f"""<svg width="420" height="140" viewBox="0 0 420 140" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <clipPath id="corners">
+            <rect x="15" y="15" width="110" height="110" rx="12"/>
+        </clipPath>
+    </defs>
+    
+    <rect width="420" height="140" rx="16" fill="#1C1C1E" stroke="#38383A" stroke-width="1"/>
+    
+    {image_tag}
+    
+    <text x="145" y="35" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#EBEBF5" opacity="0.6" font-weight="600" letter-spacing="0.5">MADHAV'S PLAYLIST</text>
+    
+    <text x="145" y="60" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" fill="#FFFFFF" font-weight="bold">{song_title}</text>
+    <text x="145" y="80" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#EBEBF5" opacity="0.6">{song_artist}</text>
+    
+    <g transform="translate(145, 105)">
+        <rect x="0" y="0" width="255" height="4" rx="2" fill="#424245"/>
+        <rect x="0" y="0" width="85" height="4" rx="2" fill="#FFFFFF"/>
+        <circle cx="85" cy="2" r="4" fill="#FFFFFF"/>
+        
+        <path d="M120 18 L132 25 L120 32 Z" fill="#FFFFFF"/>
+        <path d="M92 20 L92 30 M92 25 L82 20 L82 30 Z" fill="#FFFFFF" opacity="0.8"/>
+        <path d="M152 20 L152 30 M152 25 L162 20 L162 30 Z" fill="#FFFFFF" opacity="0.8"/>
+    </g>
+</svg>"""
+
 # --- SAVE ---
 os.makedirs('dist', exist_ok=True)
 with open('dist/dsa_card.svg', 'w', encoding='utf-8') as f: f.write(dsa_svg)
 with open('dist/cp_card.svg', 'w', encoding='utf-8') as f: f.write(cp_svg)
-print("GenZ SVGs successfully generated!")
+with open('dist/music_card.svg', 'w', encoding='utf-8') as f: f.write(music_svg)
+print("All custom SVGs generated, including iPad Player!")
