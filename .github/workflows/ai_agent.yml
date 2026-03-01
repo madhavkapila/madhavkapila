@@ -1,6 +1,7 @@
 name: Madhav AI Ecosystem
 
 on:
+  push: {branches: ["master", "main"]}
   schedule:
     - cron: '0 0 * * *' # Midnight cron
   workflow_dispatch:    # 🟢 ADD THIS: Enables the manual "Run workflow" button
@@ -10,7 +11,7 @@ on:
 jobs:
   passive-pulse-and-db-build:
     # 🟢 UPDATE THIS: Allow the job to run on schedule OR manual dispatch
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
       contents: write
