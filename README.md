@@ -19,7 +19,7 @@
 $ madhav --status --verbose
 > [INIT] Loading weights from local vector DB...
 > [INFO] Booting Active Agent on Gemma 3 cluster...
-> "Logic sharp like a Gabru, heart soft like a pulse—purely unstoppable today."
+> "Gemini set kitta te Vector kaim, Gabru karda sira par dil ton naram."
 ```
 
 <div align="center">
