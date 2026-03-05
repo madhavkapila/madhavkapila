@@ -19,7 +19,7 @@
 $ madhav --status --verbose
 > [INIT] Loading weights from local vector DB...
 > [INFO] Booting Active Agent on Gemma 3 cluster...
-> "Logic te kaddi dhaar, par dil ton nira mitha gabru."
+> "Commits zero, logic heavy, and a soft-hearted Gabru plotting a billion-dollar legacy."
 ```
 
 <div align="center">
