@@ -3,13 +3,13 @@
     <text x="20" y="35" font-family="monospace" font-size="16" fill="#FFA116" font-weight="bold">> LEETCODE_ANALYTICS_</text>
     <g transform="translate(20, 65)">
         <text x="0" y="15" font-family="sans-serif" font-size="12" fill="#8B949E">Total Solved</text>
-        <text x="0" y="45" font-family="monospace" font-size="30" fill="#FFFFFF" font-weight="bold">256</text>
+        <text x="0" y="45" font-family="monospace" font-size="30" fill="#FFFFFF" font-weight="bold">259</text>
         
         <text x="130" y="15" font-family="sans-serif" font-size="12" fill="#00b8a3">Easy</text>
-        <text x="130" y="40" font-family="monospace" font-size="20" fill="#FFFFFF">96</text>
+        <text x="130" y="40" font-family="monospace" font-size="20" fill="#FFFFFF">97</text>
         
         <text x="210" y="15" font-family="sans-serif" font-size="12" fill="#ffc01e">Medium</text>
-        <text x="210" y="40" font-family="monospace" font-size="20" fill="#FFFFFF">142</text>
+        <text x="210" y="40" font-family="monospace" font-size="20" fill="#FFFFFF">144</text>
         
         <text x="300" y="15" font-family="sans-serif" font-size="12" fill="#ff375f">Hard</text>
         <text x="300" y="40" font-family="monospace" font-size="20" fill="#FFFFFF">18</text>
