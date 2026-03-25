@@ -105,7 +105,7 @@ if chunks_to_embed:
         for attempt in range(MAX_RETRIES):
             try:
                 result = client.models.embed_content(
-                    model="text-embedding-004", # Updated to current model name
+                    model="gemini-embedding-001",
                     contents=batch,
                     config=types.EmbedContentConfig(task_type="RETRIEVAL_DOCUMENT")
                 )
