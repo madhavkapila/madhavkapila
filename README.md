@@ -19,7 +19,7 @@
 $ madhav --status --verbose
 > [INIT] Loading weights from local vector DB...
 > [INFO] Booting Active Agent on Gemma 3 cluster...
-> "Logic kaim, dil narm, and a silent grind that moves mountains."
+> "Logic sharp, grind silent, heart pure gold—gabru’s just plotting the billion-dollar move."
 ```
 
 <div align="center">
