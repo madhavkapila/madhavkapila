@@ -19,7 +19,7 @@
 $ madhav --status --verbose
 > [INIT] Loading weights from local vector DB...
 > [INFO] Booting Active Agent on Gemma 3 cluster...
-> "Billion-dollar vision, heart full of sukoon; just a gabru sharpening his logic today."
+> "Gemma 4 migrated, Vector DB recompiled; Gabru’s system is hard, heart stays soft."
 ```
 
 <div align="center">
