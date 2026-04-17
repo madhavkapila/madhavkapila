@@ -67,7 +67,7 @@ Always speak in the third person."""
 prompt = f"CONTEXT FROM GITHUB & RESUME:\n{context}\n\nRECRUITER QUESTION: {question}"
 full_prompt = f"{system_instruction}\n\n{prompt}"
 
-MODELS_TO_TRY = ["gemma-3-12b-it", "gemma-3-4b-it", "gemma-3-27b-it", "gemma-3-2b-it", "gemini-2.5-flash"]  # Ordered by preference
+MODELS_TO_TRY = ["gemma-4-26b-a4b-it", "gemma-4-31b-it", "gemini-2.5-flash-lite", "gemini-2.5-flash"]  # Ordered by preference
 MAX_RETRIES = 3
 answer = None
 
