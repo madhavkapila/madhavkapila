@@ -19,7 +19,7 @@
 $ madhav --status --verbose
 > [INIT] Loading weights from local vector DB...
 > [INFO] Booting Active Agent on Gemma 3 cluster...
-> "Logic di grind tey dil vich pyaar, gabru di vakhri hi raftaar."
+> "Logics naal dunya jitni, par dil gabru da nira makkhan te sukoon ae."
 ```
 
 <div align="center">
