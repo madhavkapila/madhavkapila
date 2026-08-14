@@ -7,7 +7,7 @@
         <text x="100" y="42" font-family="sans-serif" font-size="10" fill="#8B949E">Rank: 457</text>
         
         <text x="210" y="15" font-family="sans-serif" font-size="12" fill="#8B949E">Codeforces</text>
-        <text x="210" y="45" font-family="monospace" font-size="28" fill="#FFFFFF" font-weight="bold">1112</text>
-        <text x="310" y="42" font-family="sans-serif" font-size="10" fill="#8B949E">Max: 1112</text>
+        <text x="210" y="45" font-family="monospace" font-size="28" fill="#FFFFFF" font-weight="bold">1048</text>
+        <text x="310" y="42" font-family="sans-serif" font-size="10" fill="#8B949E">Max: 1110</text>
     </g>
 </svg>
