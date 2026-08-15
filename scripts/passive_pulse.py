@@ -43,7 +43,7 @@ Rules:
 try:
     client = genai.Client(api_key=GENAI_KEY)
     response = client.models.generate_content(
-        model="gemini-3-flash-preview", 
+        model="gemini-3.7-flash", 
         contents=prompt,
     )
     quote = response.text.strip().replace('"', '')

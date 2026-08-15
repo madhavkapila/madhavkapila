@@ -30,7 +30,7 @@ question = issue_data.get('body', '') or issue_data.get('title', '')
 # --- 2. Embed the Question ---
 try:
     embed_result = client.models.embed_content(
-        model="gemini-embedding-001",
+        model="gemini-embedding-2",
         contents=question,
         config=types.EmbedContentConfig(task_type="RETRIEVAL_QUERY")
     )
@@ -67,7 +67,7 @@ Always speak in the third person."""
 prompt = f"CONTEXT FROM GITHUB & RESUME:\n{context}\n\nRECRUITER QUESTION: {question}"
 full_prompt = f"{system_instruction}\n\n{prompt}"
 
-MODELS_TO_TRY = ["gemma-4-26b-a4b-it", "gemma-4-31b-it", "gemini-2.5-flash-lite", "gemini-2.5-flash"]  # Ordered by preference
+MODELS_TO_TRY = ["gemma-4-26b-a4b-it", "gemma-4-31b-it", "gemini-2.5-flash-lite", "gemini-2.5-flash", "gemini-3.6-flash", "gemini-3.5-flash-lite", "gemini-3.5-flash"]  # Ordered by preference
 MAX_RETRIES = 3
 answer = None
 
