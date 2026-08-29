@@ -11,8 +11,8 @@
     
     <text x="145" y="35" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#EBEBF5" opacity="0.6" font-weight="600" letter-spacing="0.5">MADHAV'S PLAYLIST</text>
     
-    <text x="145" y="60" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" fill="#FFFFFF" font-weight="bold">Lutt Le Gaya | Dhurandhar | Ranv...</text>
-    <text x="145" y="80" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#EBEBF5" opacity="0.6">Madhav Kapila</text>
+    <text x="145" y="60" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" fill="#FFFFFF" font-weight="bold">Loading Track...</text>
+    <text x="145" y="80" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#EBEBF5" opacity="0.6">YouTube Music</text>
     
     <g transform="translate(145, 105)">
         <rect x="0" y="0" width="255" height="4" rx="2" fill="#424245"/>
