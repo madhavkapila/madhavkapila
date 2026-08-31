@@ -19,7 +19,7 @@
 $ madhav --status --verbose
 > [INIT] Loading weights from local vector DB...
 > [INFO] Booting Active Agent on Gemma 3 cluster...
-> "Silent grind, billion-dollar mind, and a gabru’s heart that stays soft for you."
+> "Building billion-dollar moves in silence, but this gabru melts only for you."
 ```
 
 <div align="center">
