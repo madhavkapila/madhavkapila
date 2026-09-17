@@ -19,7 +19,7 @@
 $ madhav --status --verbose
 > [INIT] Loading weights from local vector DB...
 > [INFO] Booting Active Agent on Gemma 3 cluster...
-> "Dil saaf, vision sharp—quietly building a billion-dollar dream for my people."
+> "Compiling backends and heavy thoughts. O(1) focus."
 ```
 
 <div align="center">
