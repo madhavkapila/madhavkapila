@@ -19,7 +19,7 @@
 $ madhav --status --verbose
 > [INIT] Loading weights from local vector DB...
 > [INFO] Booting Active Agent on Gemma 3 cluster...
-> "Stacking trophies with gabru swagger, but this heart stays endlessly soft."
+> "Trophies stacked with gabru swagger, but dil always beats soft for you."
 ```
 
 <div align="center">
